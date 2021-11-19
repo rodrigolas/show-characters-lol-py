@@ -1,0 +1,827 @@
+<Tela>:
+    id: ScMain
+    Screen:
+        name: 'inicio'
+        BoxLayout:
+            padding: 25
+            canvas.before:
+                Color:
+                    rgba: [.09, .09, .09, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size            
+            orientation: 'vertical'            
+            Image:
+                id: logo
+                source: 'Imagens/logotipo.png'
+                allow_stretch: True   
+                size_hint: None, None             
+                size: 325, 325
+                pos: self.pos
+                pos_hint: {'center_x': 0.5}
+            Button:
+                id: btnLogin
+                background_normal: 'Imagens/teste1.png'
+                background_down: 'Imagens/teste2.png'
+                size_hint: None,None
+                text: 'Login'
+                color: 0,0,0,1
+                font_size: 30
+                size: 300, 75
+                pos_hint: {'center_x': 0.5}
+                on_release: 
+                    ScMain.current = 'Login'
+                    ScMain.transition.direction = 'left'
+            Button:
+                id: btnRegistrar
+                background_normal: 'Imagens/teste3.png'
+                background_down: 'Imagens/teste4.png'
+                size_hint: None,None
+                text: 'Registrar-se'
+                color: 0,0,0,1
+                font_size: 30
+                size: 300, 75
+                pos_hint: {'center_x': 0.5}
+                on_release:
+                    ScMain.current = 'Registrar'
+                    ScMain.transition.direction = 'left'
+            Button:
+                id: btnSobre
+                background_normal: 'Imagens/teste5.png'
+                background_down: 'Imagens/teste6.png'
+                text: 'Sobre'
+                color: 0,0,0,1
+                font_size: 30
+                size_hint: None,None
+                size: 300, 75
+                pos_hint: {'center_x': 0.5}
+                on_release:
+                    ScMain.current = 'sobre'
+                    ScMain.transition.direction = 'left' 
+            Button:
+                id: btnFechar
+                background_normal: 'Imagens/teste8.png'
+                background_down: 'Imagens/teste7.png'
+                text: 'Fechar'
+                color: 0,0,0,1
+                font_size: 30
+                size_hint: None,None
+                size: 300, 75
+                pos_hint: {'center_x': 0.5}
+                on_release: app.stop()             
+    Screen:
+        name: 'Login'
+        BoxLayout:
+            padding: 30        
+            canvas.before:
+                Color:
+                    rgba: [0, .65, .65, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            orientation: 'vertical'
+            Label:
+                text: 'Insira seus Dados:'
+                font_size: 60
+                color: 0, 1, 1, 1            
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Usuário: '
+                    font_size: 30
+                TextInput:
+                    id: txtUsuario                                        
+                    font_size: 30
+                    size_hint: None, None
+                    size: 630, 45
+                    pos_hint: {'center_y': 0.5}
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Senha: '
+                    font_size: 30
+                    size_hint: None, None
+                    pos_hint: {'center_y': 0.5}
+                TextInput:
+                    id: txtSenha
+                    font_size: 30
+                    size_hint: None, None
+                    size: 630, 45
+                    pos_hint: {'center_y': 0.5}
+            Label:
+                id: lblKiva
+                text: ''
+                font_size: 30
+                size_hint: None, None
+                pos_hint: {'center_x': 0.5}
+            BoxLayout:
+                spacing: 10
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: 80
+                Button:
+                    id: btnVoltar
+                    text: 'VOLTAR'
+                    font_size: 60
+                    background_normal: 'Imagens/teste9.png'
+                    background_down: 'Imagens/teste10.png'
+                    on_release: 
+                        ScMain.current = 'inicio'
+                        ScMain.transition.direction = 'right'
+                Button:
+                    id: btnEntrar
+                    text: 'Entrar'
+                    font_size: 60
+                    background_normal: 'Imagens/teste5.png'
+                    background_down: 'Imagens/teste6.png'
+                    on_release: app.login(txtUsuario,txtSenha,lblKiva,ScMain)
+    Screen:
+        name: 'Registrar'        
+        BoxLayout:
+            padding: 10
+            canvas.before:
+                Color:
+                    rgba: [.65, .65, .65, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            orientation: 'vertical'
+            Label:
+                text: 'Insira seus Dados:'
+                font_size: 60
+                color: 1, 0, 1, 1                           
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Usuário:'
+                    font_size: 30
+                TextInput:
+                    id: entradaUsuario
+                    font_size: 30
+                    size_hint: None, None
+                    size: 630, 45
+                    pos_hint: {'center_y': 0.5}
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Senha:'
+                    font_size: 30
+                TextInput:
+                    id: entradaSenha
+                    font_size: 30
+                    size_hint: None, None
+                    size: 630, 45
+                    pos_hint: {'center_y': 0.5}
+            Button:
+                id: btnRegistro
+                text: 'Registrar'
+                font_size: 20
+                background_normal: 'Imagens/teste5.png'
+                background_down: 'Imagens/teste6.png'
+                size_hint: None, None
+                size: 225, 45
+                pos_hint: {'center_x': 0.5}
+                on_press: app.registro(entradaUsuario,entradaSenha,lblKivy)
+            Label:
+                id:lblKivy
+                text: ''
+                font_size: 30
+                pos_hint: {'center_x': 0.5}
+            Button:
+                text: 'VOLTAR'                
+                font_size: 15
+                background_normal: 'Imagens/teste9.png'
+                background_down: 'Imagens/teste10.png'
+                size_hint: None, None
+                size: 100, 30
+                pos_hint: {'center_y': 0.5}
+                on_release: 
+                    ScMain.current = 'inicio'
+                    ScMain.transition.direction = 'right'
+    Screen:
+        name: 'sobre'
+        BoxLayout:
+            padding: 25
+            canvas.before:
+                Color:
+                    rgba: [.09, .09, .09, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size            
+            orientation: 'vertical'           
+            Label:
+                id: 'lblSobre'
+                text: 'Bem vindo ao programa E-Golas feito por Rodrigo Cunha Gasparotto,\nem que o intuito dele é que você possa escolher algum campeão\ndo jogo League of Legends (LOL). E descobrir o que suas habilidades fazem.'
+                font_size: 20
+                height: 10
+            Label:
+                id: 'lblSobre1'
+                text: 'Observação: É um programa que ainda não contém todos os personagens do jogo.'
+                font_size: 20
+                height: 10
+            Button:
+                text: 'VOLTAR'                
+                font_size: 15
+                background_normal: 'Imagens/teste9.png'
+                background_down: 'Imagens/teste10.png'
+                size_hint: None, None
+                size: 100, 30
+                pos_hint: {'center_y': 0.5}
+                on_release: 
+                    ScMain.current = 'inicio'
+                    ScMain.transition.direction = 'right'    
+    Screen:
+        name:'ListaChamps'
+        BoxLayout:
+            padding: 25
+            spacing: 10
+            canvas.before:
+                Color:
+                    rgba: [.09, .09, .09, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size            
+            orientation: 'vertical'
+            Label:
+                text: 'Escreva o nome de um campeão:'
+                color: 1,1,1,1
+                font_size: 45
+                pos_hint: {'center_x': 0.5} 
+                padding_bottom: 10
+            TextInput:
+                id: inputChamp
+                size_hint: None,None
+                size: 630, 45
+                font_size: 30
+                pos_hint: {'center_x': 0.5}
+                padding_bottom: 10
+            Button:
+                id: btnSelecionar
+                text: 'Selecionar'
+                background_normal: 'Imagens/teste11.png'
+                background_down: 'Imagens/teste12.png'
+                font_size: 15
+                size_hint: None,None
+                size: 100, 30
+                pos_hint: {'center_x': 0.5}
+                on_press:
+                    app.pagChamp(inputChamp,textoErro,ScMain)
+                    ScMain.transition.direction = 'left'
+            Label:
+                id: textoErro
+                color: 1,1,1,1
+                text: ''
+                font_size: 20
+                pos_hint: {'center_x': 0.5}
+                padding_bottom: 10
+            Image:
+                id: logo
+                source: 'Imagens/logotipo.png'
+                allow_stretch: True   
+                size_hint: None, None             
+                size: 250, 250
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: None, None
+                size: 40,70
+                pos_hint: {'x': 0.5}
+                Label:
+                    text: 'Lista de Campeões:'
+                    font_size:30
+                    background_color: 1, 1, 1, 1
+                Label:
+                    text: '\nAatrox'
+                    font_size:15
+                    background_color: 1, 1, 1, 1
+                Label:
+                    text: '\nGragas'
+                    font_size:15
+                    background_color: 1, 1, 1, 1
+                Label:
+                    text: '\nYasuo'
+                    font_size:15
+                    background_color: 1, 1, 1, 1
+                Label:
+                    text: '\nSylas'
+                    font_size:15
+                    background_color: 1, 1, 1, 1
+                Label:
+                    text: '\nKatarina'
+                    font_size:15
+                    background_color: 1, 1, 1, 1
+            Button:
+                text: 'Logout'
+                font_size: 15
+                background_normal: 'Imagens/teste9.png'
+                background_down: 'Imagens/teste10.png'
+                size_hint: None, None
+                size: 100, 30
+                on_release: 
+                    ScMain.current = 'inicio'
+                    ScMain.transition.direction = 'right'
+    Screen:
+        name:'Katarina'
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: [.09, .09, .09, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size            
+            orientation: 'vertical'            
+            PageLayout:
+                id: pLay1
+                Button:	
+                    background_normal: 'Imagens/katarina.png'
+                    background_down: 'Imagens/katarina.png'
+                    border: 0,0,0,0
+                    on_press: pLay1.page = 1
+                Button:
+                    background_normal: 'Imagens/katarina11.png'
+                    background_down: 'Imagens/katarina11.png'
+                    border: 0,0,0,0
+                    on_press: pLay1.page = 2
+                Button:
+                    background_normal: 'Imagens/katarina12.png'
+                    background_down: 'Imagens/katarina12.png'
+                    border: 0,0,0,0
+                    on_press: pLay1.page = 3
+                Button:
+                    background_normal: 'Imagens/katarina13.png'
+                    background_down: 'Imagens/katarina13.png'
+                    border: 0,0,0,0
+                    on_press: pLay1.page = 4
+                Button:
+                    #OBS:Professor caso você veja essa mensagem, essa foto está com a qualidade baixa e nao achei outra para substituir
+                    background_normal: 'Imagens/katarina14.png'
+                    background_down: 'Imagens/katarina14.png'
+                    border: 0,0,0,0
+                    on_press: pLay1.page = 0
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout:
+                    
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/katarina1.png'
+                            background_down: 'Imagens/katarina1.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades.text='PASSIVA- VORACIDADE:\n\nOs Tempos de Recarga de Katarina são reduzidos dramaticamente\n sempre que um Campeão que ela havia causado dano recentemente morrer.\nSe apanhar uma Adaga, Katarina a usa para cortar todos os inimigos próximos,\ncausando Dano Mágico.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/katarina2.png'
+                            background_down: 'Imagens/katarina2.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades.text='Q- LÂMINA SALTITANTE:\n\nKatarina arremessa uma Adaga no alvo.\nEla salta em inimigos próximos antes de ricochetear e cair no chão.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/katarina3.png'
+                            background_down: 'Imagens/katarina3.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades.text='W- PREPARAÇÃO:\n\nKatarina recebe um impulso de Velocidade de Movimento e joga uma Adaga para cima.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/katarina4.png'
+                            background_down: 'Imagens/katarina4.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades.text='E- SHUNPO:\n\nKatarina desloca-se em direção ao alvo, golpeando-o caso seja inimigo ou\ngolpeando o inimigo mais próximo caso não seja.'        
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/katarina5.png'
+                            background_down: 'Imagens/katarina5.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades.text='R- LÓTUS DA MORTE:\n\nKatarina gira em torno de si mesma, disparando adagas\nmuito rapidamente e causando muito Dano Mágico nos 3 Campeões inimigos mais próximos.'
+                Label:
+                    id: habilidades
+                    text: 'Pressione alguma das habilidades acima:'
+                    height: 200
+                    font_size: 15
+                Button:
+                    text: 'Voltar'
+                    font_size: 15
+                    background_normal: 'Imagens/teste9.png'
+                    background_down: 'Imagens/teste10.png'
+                    size_hint: None, None
+                    size: 100, 30
+                    on_release: 
+                        ScMain.current = 'ListaChamps'
+                        ScMain.transition.direction = 'right'
+    Screen:
+        name:'Aatrox'
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: [.09, .09, .09, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size            
+            orientation: 'vertical'            
+            PageLayout:
+                id: pLay2
+                Button:	
+                    background_normal: 'Imagens/aatrox.png'
+                    background_down: 'Imagens/aatrox.png'
+                    border: 0,0,0,0
+                    on_press: pLay2.page = 1
+                Button:
+                    background_normal: 'Imagens/aatrox11.png'
+                    background_down: 'Imagens/aatrox11.png'
+                    border: 0,0,0,0
+                    on_press: pLay2.page = 2
+                Button:
+                    background_normal: 'Imagens/aatrox12.png'
+                    background_down: 'Imagens/aatrox12.png'
+                    border: 0,0,0,0
+                    on_press: pLay2.page = 3
+                Button:
+                    background_normal: 'Imagens/aatrox13.png'
+                    background_down: 'Imagens/aatrox13.png'
+                    border: 0,0,0,0
+                    on_press: pLay2.page = 4
+                Button:
+                    background_normal: 'Imagens/aatrox14.png'
+                    background_down: 'Imagens/aatrox14.png'
+                    border: 0,0,0,0
+                    on_press: pLay2.page = 0
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout:
+                    
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/aatrox1.png'
+                            background_down: 'Imagens/aatrox1.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades2.text='PASSIVA- POSTURA DO ARAUTO DA MORTE:\n\nPeriodicamente, o próximo ataque básico de Aatrox causa\nDano Físico adicional e o cura com base na Vida máxima do alvo.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/aatrox2.png'
+                            background_down: 'Imagens/aatrox2.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades2.text='Q- A ESPADA DARKIN:\n\nAatrox bate sua espada no chão, causando Dano Físico.\nEle pode bater até três vezes, cada vez em uma área de ação diferente.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/aatrox3.png'
+                            background_down: 'Imagens/aatrox3.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades2.text='W- CORRENTES INFERNAIS:\n\nAatrox bate no chão, causando dano ao primeiro inimigo atingido.\nCampeões e Monstros Grandes precisam sair da área de impacto\nrapidamente ou serão arrastados para o centro e receberão dano novamente.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/aatrox4.png'
+                            background_down: 'Imagens/aatrox4.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades2.text='E- AVANÇO UMBRAL:\n\nPassivamente, Aatrox se cura quando causa dano a Campeões inimigos.\nQuando ativado, ele avança em uma direção.'
+        
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/aatrox5.png'
+                            background_down: 'Imagens/aatrox5.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades2.text='R-ANIQUILADOR DE MUNDOS:\n\nAatrox libera sua forma demoníaca, aterrorizando tropas inimigas próximas,\nganhando Dano de Ataque, cura aumentada e Velocidade de Movimento.\nSe ele conseguir um abate, este efeito é estendido.'
+                Label:
+                    id: habilidades2
+                    text: 'Pressione alguma das habilidades acima:'
+                    height: 200
+                    font_size: 15
+                Button:
+                    text: 'Voltar'
+                    font_size: 15
+                    background_normal: 'Imagens/teste9.png'
+                    background_down: 'Imagens/teste10.png'
+                    size_hint: None, None
+                    size: 100, 30
+                    on_release: 
+                        ScMain.current = 'ListaChamps'
+                        ScMain.transition.direction = 'right'
+    Screen:
+        name:'Yasuo'
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: [.09, .09, .09, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size            
+            orientation: 'vertical'
+            PageLayout:
+                id: pLay3
+                Button:	
+                    background_normal: 'Imagens/yasuo.png'
+                    background_down: 'Imagens/yasuo.png'
+                    border: 0,0,0,0
+                    on_press: pLay3.page = 1
+                Button:
+                    background_normal: 'Imagens/yasuo11.png'
+                    background_down: 'Imagens/yasuo11.png'
+                    border: 0,0,0,0
+                    on_press: pLay3.page = 2
+                Button:
+                    background_normal: 'Imagens/yasuo12.png'
+                    background_down: 'Imagens/yasuo12.png'
+                    border: 0,0,0,0
+                    on_press: pLay3.page = 3
+                Button:
+                    background_normal: 'Imagens/yasuo13.png'
+                    background_down: 'Imagens/yasuo13.png'
+                    border: 0,0,0,0
+                    on_press: pLay3.page = 4
+                Button:
+                    background_normal: 'Imagens/yasuo14.png'
+                    background_down: 'Imagens/yasuo14.png'
+                    border: 0,0,0,0
+                    on_press: pLay3.page = 0
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout: 
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/yasuo1.png'
+                            background_down: 'Imagens/yasuo1.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades1.text='PASSIVA- ESTILO DO ERRANTE:\n\nA Chance de Acerto Crítico do Yasuo é aumentada.\nAlém disso, Yasuo vai gerando um Escudo sempre que se movimenta.\nO Escudo é ativado quando Yasuo sofre dano de um Campeão ou monstro.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/yasuo2.png'
+                            background_down: 'Imagens/yasuo2.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades1.text='Q- TEMPESTADE DE AÇO:\n\nGolpeia à frente, causando dano a todos os inimigos em linha reta.\nAo contato, Tempestade de Aço concede um acúmulo de Tempestade Crescente por alguns segundos.\nCom 2 acúmulos, Tempestade de Aço desfere um tornado que arremessa inimigos ao ar.\nTempestade de Aço é tratada como ataque básico e escala com as mesmas coisas.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/yasuo3.png'
+                            background_down: 'Imagens/yasuo3.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades1.text='W- PAREDE DE VENTO:\n\nCria uma parede movediça que bloqueia todos os projéteis inimigos por 4 segundos.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/yasuo4.png'
+                            background_down: 'Imagens/yasuo4.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades1.text='E- ESPADA ÁGIL:\n\nAvança e atravessa o inimigo alvo, causando Dano Mágico.\nCada conjuração aumenta o dano base de seu próximo avanço, até um limite máximo.\nNão pode ser conjurada novamente no mesmo inimigo por alguns segundos.\nSe Tempestade de Aço for conjurada durante o avanço, o ataque será circular.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/yasuo5.png'
+                            background_down: 'Imagens/yasuo5.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades1.text='R- ÚLTIMO SUSPIRO:\n\nTeletransporta-se para um Campeão inimigo arremessado ao ar,\ncausando Dano Físico e mantendo no ar todos os inimigos da área que foram arremessados ao ar.\nConcede o máximo de Fluxo, mas zera todos os acúmulos de Tempestade Crescente.\nPor um período moderado a seguir, os Acertos Críticos\nde Yasuo recebem Penetração de Armadura adicional significativa.'
+                Label:
+                    id: habilidades1
+                    text: 'Pressione alguma das habilidades acima:'
+                    height: 200
+                    font_size: 15
+                Button:
+                    text: 'Voltar'
+                    font_size: 15
+                    background_normal: 'Imagens/teste9.png'
+                    background_down: 'Imagens/teste10.png'
+                    size_hint: None, None
+                    size: 100, 30
+                    on_release: 
+                        ScMain.current = 'ListaChamps'
+                        ScMain.transition.direction = 'right'
+    Screen:
+        name:'Sylas'
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: [.09, .09, .09, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size            
+            orientation: 'vertical'            
+            PageLayout:
+                id: pLay4
+                Button:	
+                    background_normal: 'Imagens/sylas.png'
+                    background_down: 'Imagens/sylas.png'
+                    border: 0,0,0,0
+                    on_press: pLay4.page = 1
+                Button:
+                    background_normal: 'Imagens/sylas11.png'
+                    background_down: 'Imagens/sylas11.png'
+                    border: 0,0,0,0
+                    on_press: pLay4.page = 2
+                Button:
+                    background_normal: 'Imagens/sylas12.png'
+                    background_down: 'Imagens/sylas12.png'
+                    border: 0,0,0,0
+                    on_press: pLay4.page = 3
+                Button:
+                    background_normal: 'Imagens/sylas13.png'
+                    background_down: 'Imagens/sylas13.png'
+                    border: 0,0,0,0
+                    on_press: pLay4.page = 4
+                Button:
+                    background_normal: 'Imagens/sylas14.png'
+                    background_down: 'Imagens/sylas14.png'
+                    border: 0,0,0,0
+                    on_press: pLay4.page = 0
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout: 
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/sylas1.png'
+                            background_down: 'Imagens/sylas1.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades3.text='PASSIVA-EXPLOSÃO DE PETRICITA:\n\nApós conjurar uma habilidade, Sylas armazena uma carga de Explosão de Petricita.\nSeus ataques básicos gastam uma carga e agitam as correntes energizadas ao redor dele,\ncausando Dano Mágico adicional a inimigos atingidos. Enquanto Sylas tiver uma carga de Explosão de Petricita,\nele recebe Velocidade de Ataque.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/sylas2.png'
+                            background_down: 'Imagens/sylas2.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades3.text='Q- CORRENTES-CHICOTE:\n\nSylas chicoteia com suas correntes, que se intersectam no local-alvo,\ncausando dano e reduzindo a velocidade dos inimigos.\nApós um intervalo, há uma explosão de energia mágica no ponto da intersecção, causando dano.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/sylas3.png'
+                            background_down: 'Imagens/sylas3.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades3.text='W- REGICIDA:\n\nSylas avança em um inimigo com uma força mágica,\ncausando dano com base em execução e curando a si mesmo contra Campeões inimigos.'
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/sylas4.png'
+                            background_down: 'Imagens/sylas4.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades3.text='E-EVASÃO / ABDUÇÃO:\n\nSylas avança por uma curta distância, podendo reconjurar a habilidade para\narremessar suas correntes e se arrastar na direção do inimigo atingido.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/sylas5.png'
+                            background_down: 'Imagens/sylas5.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades3.text='R-USURPAR:\n\nSylas rouba a habilidade ultimate do inimigo e pode conjurá-la sem custo.'
+                Label:
+                    id: habilidades3
+                    text: 'Pressione alguma das habilidades acima:'
+                    height: 200
+                    font_size: 15
+                Button:
+                    text: 'Voltar'
+                    font_size: 15
+                    background_normal: 'Imagens/teste9.png'
+                    background_down: 'Imagens/teste10.png'
+                    size_hint: None, None
+                    size: 100, 30
+                    on_release: 
+                        ScMain.current = 'ListaChamps'
+                        ScMain.transition.direction = 'right'
+    Screen:
+        name:'Gragas'
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: [.09, .09, .09, 1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size            
+            orientation: 'vertical'            
+            PageLayout:
+                id: pLay
+                Button:	
+                    background_normal: 'Imagens/gragas.png'
+                    background_down: 'Imagens/gragas.png'
+                    border: 0,0,0,0
+                    on_press: pLay.page = 1
+                Button:
+                    background_normal: 'Imagens/gragas11.png'
+                    background_down: 'Imagens/gragas11.png'
+                    border: 0,0,0,0
+                    on_press: pLay.page = 2
+                Button:
+                    background_normal: 'Imagens/gragas12.png'
+                    background_down: 'Imagens/gragas12.png'
+                    border: 0,0,0,0
+                    on_press: pLay.page = 3
+                Button:
+                    background_normal: 'Imagens/gragas13.png'
+                    background_down: 'Imagens/gragas13.png'
+                    border: 0,0,0,0
+                    on_press: pLay.page = 4
+                Button:
+                    background_normal: 'Imagens/gragas14.png'
+                    background_down: 'Imagens/gragas14.png'
+                    border: 0,0,0,0
+                    on_press: pLay.page = 0
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout: 
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/gragas1.png'
+                            background_down: 'Imagens/gragas1.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades4.text='PASSIVA-HAPPY HOUR:\n\nGragas cura a si mesmo periodicamente após utilizar uma habilidade.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/gragas2.png'
+                            background_down: 'Imagens/gragas2.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades4.text='Q-JOGAR O BARRIL:\n\nGragas rola seu barril até um local, podendo ativá-lo novamente para explodir.\nCaso isso não aconteça, o barril explodirá sozinho após 4s.\nA potência da explosão aumenta ao longo do tempo.\nOs inimigos atingidos pela explosão sofrem Lentidão.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/gragas3.png'
+                            background_down: 'Imagens/gragas3.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades4.text='W-FÚRIA DA BEBEDEIRA:\n\nGragas entorna a bebida de seu barril garganta abaixo, canalizando por 1 segundo.\nAo terminar,\nele fica torpecidamente poderoso, causando mais dano em seu próximo ataque básico e reduzindo o dano recebido.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/gragas4.png'
+                            background_down: 'Imagens/gragas4.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades4.text='E-BARRIGADA:\n\nGragas avança em direção a um local e colide com a primeira unidade inimiga que encontrar,\ncausando dano a todas as unidades inimigas próximas e atordoando-as.'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 8
+                        Button:
+                            background_normal: 'Imagens/gragas5.png'
+                            background_down: 'Imagens/gragas5.png'
+                            border: 0,0,0,0
+                            on_release:
+                                habilidades4.text='R-BARRIL EXPLOSIVO:\n\nGragas arremessa seu barril em um local, causando dano e afastando os inimigos pegos no raio da explosão.'
+                Label:
+                    id: habilidades4
+                    text: 'Pressione alguma das habilidades acima:'
+                    height: 200
+                    font_size: 15
+                Button:
+                    text: 'Voltar'
+                    font_size: 15
+                    background_normal: 'Imagens/teste9.png'
+                    background_down: 'Imagens/teste10.png'
+                    size_hint: None, None
+                    size: 100, 30
+                    on_release: 
+                        ScMain.current = 'ListaChamps'
+                        ScMain.transition.direction = 'right'
